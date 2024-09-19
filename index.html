@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #8e2de2, #4a00e0);
+            font-family: 'Arial', sans-serif;
+        }
+        .dark-mode {
+            background: linear-gradient(to right, #1a1a1a, #333333);
+        }
+        .dark-mode .bg-white {
+            background-color: #2d2d2d;
+        }
+        .dark-mode .text-gray-700 {
+            color: #d1d1d1;
+        }
+        .dark-mode .text-gray-500 {
+            color: #a1a1a1;
+        }
+        .dark-mode .colorwhite{
+            color: white;
+        }
+
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+        <h2 id="formTitle" class="text-2xl font-bold text-center mb-6 colorwhite">Login</h2>
+        <form id="authForm">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+                <div class="flex items-center border-b border-gray-300 py-2">
+                    <i class="fas fa-user text-gray-400 mr-2"></i>
+                    <input id="username" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Type your username" aria-label="Username">
+                </div>
+            </div>
+            <div id="emailSection" class="mb-4 hidden">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                <div class="flex items-center border-b border-gray-300 py-2">
+                    <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                    <input id="email" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="email" placeholder="Type your email" aria-label="Email">
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+                <div class="flex items-center border-b border-gray-300 py-2">
+                    <i class="fas fa-lock text-gray-400 mr-2"></i>
+                    <input id="password" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="password" placeholder="Type your password" aria-label="Password">
+                </div>
+            </div>
+            <div class="flex justify-end mb-4">
+                <a id="forgotPassword" href="#" class="text-sm text-gray-500">Forgot password?</a>
+            </div>
+            <div class="mb-6">
+                <button id="authButton" class="w-full bg-gradient-to-r from-green-400 to-purple-500 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="button">
+                    LOGIN
+                </button>
+            </div>
+            <div class="text-center text-gray-500 mb-4">Or Sign Up Using</div>
+            <div class="flex justify-center space-x-4 mb-6">
+                <a href="#" class="text-blue-800 colorwhite"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="#" class="text-blue-400 colorwhite"><i class="fab fa-google fa-2x"></i></a>
+                <a href="#" class="text-gray-800 colorwhite"><i class="fab fa-github fa-2x"></i></a>
+            </div>
+            <div class="text-center mb-6">
+                <a id="toggleForm" href="#" class="text-gray-700 font-bold colorwhite">SIGN UP</a>
+            </div>
+            <div class="text-center">
+                <button id="toggleDarkMode" class="w-full bg-gradient-to-r from-green-400 to-purple-500 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="button">
+                    Toggle Dark Mode
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('authButton').addEventListener('click', function() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var emailSection = document.getElementById('emailSection');
+            var email = emailSection.classList.contains('hidden') ? null : document.getElementById('email').value;
+
+            if (!username || !password || (email !== null && !email)) {
+                alert('Please fill in all required fields.');
+            } else {
+                // Proceed with login or signup
+            }
+        });
+
+        document.getElementById('toggleForm').addEventListener('click', function(event) {
+            event.preventDefault();
+            var formTitle = document.getElementById('formTitle');
+            var authButton = document.getElementById('authButton');
+            var emailSection = document.getElementById('emailSection');
+            var toggleForm = document.getElementById('toggleForm');
+
+            if (formTitle.textContent === 'Login') {
+                formTitle.textContent = 'Sign Up';
+                authButton.textContent = 'SIGN UP';
+                emailSection.classList.remove('hidden');
+                toggleForm.textContent = 'LOGIN';
+            } else {
+                formTitle.textContent = 'Login';
+                authButton.textContent = 'LOGIN';
+                emailSection.classList.add('hidden');
+                toggleForm.textContent = 'SIGN UP';
+            }
+        });
+
+        document.getElementById('toggleDarkMode').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>
